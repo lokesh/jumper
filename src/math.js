@@ -18,7 +18,7 @@
  * first argument up to (but not including) the second argument.
  *
  */
-function random(min, max) {
+const random = (min, max) => {
   var rand = Math.random();
 
   if (typeof min === 'undefined') {

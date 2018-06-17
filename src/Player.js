@@ -21,10 +21,10 @@ class Player {
       this[prop] = opts[prop];
     });
 
-    this.speed = 1;
+    this.speed = 1.5;
     this.drag = 0.8;
-    this.gravity = 0.4;
-    this.jumpForce = 10;
+    this.gravity = 0.3;
+    this.jumpForce = 8;
 
     this.velX = 0;
     this.velY = 0;

@@ -13,7 +13,7 @@
 
  */
 
-function int(n, radix) {
+const int = (n, radix) => {
   radix = radix || 10;
   if (typeof n === 'string') {
     return parseInt(n, radix);

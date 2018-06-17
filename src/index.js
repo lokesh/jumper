@@ -9,7 +9,7 @@ import World from './World';
 
 const world = new World();
 const player = new Player();
-const level1 = new Level(levels[0]);
+const level = new Level(levels[0]);
 
 const key = new Key();
 key.on();
@@ -22,11 +22,10 @@ canvas.height = c.CANVAS_HEIGHT;
 
 
 
-const update = function() {
+const update = () => {
   // ----------
   // USER INPUT
   // ----------
-
   if (key.isDown('left')) {
     player.left();
   }
@@ -42,19 +41,34 @@ const update = function() {
   // ------
   // UPDATE
   // ------
-
   player.update();
 
-  // ----
-  // DRAW
-  // ----
-
+  // ------
+  // Render
+  // ------
   // Clear canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-  // Draw Player
-  ctx.fillRect(player.x, player.y, player.width, player.height);
+  renderMap(level);
+  renderPlayer();
+
   window.requestAnimationFrame(update);
+}
+
+const renderMap = () => {
+  ctx.fillStyle="#333333";
+  for (let row = 0; row < c.ROWS; row++) {
+    for (let col = 0; col < c.COLS; col++) {
+      if (level.rows[row][col] == '#') {
+        ctx.fillRect(col * c.GRID_SIZE, row * c.GRID_SIZE, c.GRID_SIZE, c.GRID_SIZE)
+      }
+    }
+  }
+}
+
+const renderPlayer = () => {
+  ctx.fillStyle="#ee77dd";
+  ctx.fillRect(player.x, player.y, player.width, player.height);
 }
 
 update();
