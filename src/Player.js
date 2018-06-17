@@ -21,7 +21,7 @@ class Player {
 
     // --
 
-    this.speed = 2;
+    this.speed = 1;
     this.drag = 0.8;
     this.gravity = 0.4;
     this.jumpForce = 10;
@@ -41,7 +41,7 @@ class Player {
     this.velY += this.gravity;
 
     this.x += this.velX;
-    this.y += this.velY;
+    // this.y += this.velY;
 
     if (this.y > this.bottomLimit) {
       this.y = this.bottomLimit;
