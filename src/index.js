@@ -4,12 +4,11 @@ import levels from './level-data';
 import Key from './Key';
 import Level from './Level';
 import Player from './Player';
-import World from './World';
+import world from './world';
 
-
-const world = new World();
 const player = new Player();
 const level = new Level(levels[0]);
+world.setLevel(level);
 
 const key = new Key();
 key.on();
@@ -19,8 +18,6 @@ const ctx = canvas.getContext('2d');
 
 canvas.width = c.CANVAS_WIDTH;
 canvas.height = c.CANVAS_HEIGHT;
-
-
 
 const update = () => {
   // ----------

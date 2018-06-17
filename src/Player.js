@@ -1,6 +1,8 @@
 import c from './constants';
 import int from './conversion';
+import log from './log';
 import random from './math';
+import world from './world';
 
 
 class Player {
@@ -40,8 +42,18 @@ class Player {
     this.velX *= this.drag;
     this.velY += this.gravity;
 
-    this.x += this.velX;
-    this.y += this.velY;
+    let collisions = world.checkCollisions(this);
+    log.track('collisions', collisions);
+
+    // if ((!collisions.left && this.velX < 0) ||
+    //     (!collisions.right && this.velX > 0)) {
+      this.x += this.velX;
+    // }
+
+    // if ((!collisions.bottom && this.velY > 0) ||
+    //     (!collisions.top && this.velX < 0)) {
+      this.y += this.velY;
+    // }
 
     if (this.y > this.bottomLimit) {
       this.y = this.bottomLimit;
