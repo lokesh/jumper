@@ -1,25 +1,23 @@
-import { random } from './math';
+import c from './constants';
+import random from './math';
 
 class Player {
-  constructor(options) {
-    // Options
-    let defaults = {
-      width: 20,
-      height: 40,
-      x: 100,
-      y: 100,
-    };
+  /**
+   * @param  {x,y} optional
+   */
+  constructor(options = {}) {
+    this.width = c.PLAYER_W;
+    this.height = c.PLAYER_H;
 
-    // this.x = parseInt(random(0, windowWidth - this.width));
-    // this.y = parseInt(random(0, windowHeight - this.height));
-
+    const defaults = {
+      x: parseInt(random(0, c.CANVAS_WIDTH - this.width)),
+      y: parseInt(random(0, c.CANVAS_HEIGHT - this.height)),
+    }
 
     let opts = Object.assign(defaults, options);
     Object.keys(defaults).forEach(prop => {
       this[prop] = opts[prop];
     });
-
-    // --
 
     this.speed = 1;
     this.drag = 0.8;
@@ -30,7 +28,7 @@ class Player {
     this.velY = 0;
 
     this.leftLimit = 0;
-    // this.rightLimit = windowWidth - this.width;
+    this.rightLimit = c.CANVAS_WIDTH - this.width;
     // this.bottomLimit = int(windowHeight - this.height);
 
     this.isJumping = false;

@@ -6,17 +6,20 @@ import Level from './Level';
 import Player from './Player';
 import World from './World';
 
+
 const world = new World();
 const player = new Player();
 const level1 = new Level(levels[0]);
 
-const canvas = document.getElementById('canvas');
-canvas.width = c.MAP_TW * c.GRID_SIZE;
-canvas.height = c.MAP_TH * c.GRID_SIZE;
-const ctx = canvas.getContext('2d');
-
 const key = new Key();
 key.on();
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = c.CANVAS_WIDTH;
+canvas.height = c.CANVAS_HEIGHT;
+
 
 
 const update = function() {

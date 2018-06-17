@@ -19,13 +19,8 @@
  *
  */
 function random(min, max) {
-  var rand;
+  var rand = Math.random();
 
-  if (seeded) {
-    rand = lcg.rand();
-  } else {
-    rand = Math.random();
-  }
   if (typeof min === 'undefined') {
     return rand;
   } else if (typeof max === 'undefined') {
@@ -45,6 +40,4 @@ function random(min, max) {
   }
 };
 
-export default {
-	random
-}
+export default random;
