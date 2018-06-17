@@ -28,6 +28,4 @@ function int(n, radix) {
   }
 };
 
-export default {
-  int,
-};
+export default int;

@@ -1,5 +1,7 @@
 import c from './constants';
+import int from './conversion';
 import random from './math';
+
 
 class Player {
   /**
@@ -29,7 +31,7 @@ class Player {
 
     this.leftLimit = 0;
     this.rightLimit = c.CANVAS_WIDTH - this.width;
-    // this.bottomLimit = int(windowHeight - this.height);
+    this.bottomLimit = int(c.CANVAS_HEIGHT - this.height);
 
     this.isJumping = false;
   }
@@ -39,7 +41,7 @@ class Player {
     this.velY += this.gravity;
 
     this.x += this.velX;
-    // this.y += this.velY;
+    this.y += this.velY;
 
     if (this.y > this.bottomLimit) {
       this.y = this.bottomLimit;
