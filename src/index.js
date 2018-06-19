@@ -19,6 +19,20 @@ const ctx = canvas.getContext('2d');
 canvas.width = c.CANVAS_WIDTH;
 canvas.height = c.CANVAS_HEIGHT;
 
+
+// Debugging
+let showDebugGrid = false;
+
+window.addEventListener('keypress', (e) => {
+  console.log(e.keyCode);
+  switch (e.keyCode) {
+    case 103: // g
+      showDebugGrid = !showDebugGrid;
+      break;
+  }
+})
+
+
 const update = () => {
   // ----------
   // USER INPUT
@@ -34,6 +48,11 @@ const update = () => {
   if (key.isDown('up')) {
     player.up();
   }
+
+  if (key.isDown('grid')) {
+    // console.log('toggle Grid');
+  }
+
 
   // ------
   // UPDATE
@@ -58,6 +77,15 @@ const renderMap = () => {
     for (let col = 0; col < c.COLS; col++) {
       if (level.rows[row][col] == '#') {
         ctx.fillRect(col * c.GRID_SIZE, row * c.GRID_SIZE, c.GRID_SIZE, c.GRID_SIZE)
+      }
+    }
+  }
+
+  if (showDebugGrid) {
+    ctx.strokeStyle="red";
+    for (let row = 0; row < c.ROWS; row++) {
+      for (let col = 0; col < c.COLS; col++) {
+        ctx.strokeRect(col * c.GRID_SIZE, row * c.GRID_SIZE, c.GRID_SIZE, c.GRID_SIZE)
       }
     }
   }

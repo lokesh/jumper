@@ -1,5 +1,9 @@
 /**
  * Log global
+ *
+ * Example:
+ *
+ * log.track('Player X', player.x);
  */
 
 import c from './constants';

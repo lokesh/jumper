@@ -13,6 +13,9 @@ class Player {
     this.width = c.PLAYER_W;
     this.height = c.PLAYER_H;
 
+    // this.collWidth = c.PLAYER_COLL_W;
+    // this.collheight = c.PLAYER_COLL_H;
+
     const defaults = {
       x: parseInt(random(0, c.CANVAS_WIDTH - this.width)),
       y: parseInt(random(0, c.CANVAS_HEIGHT - this.height)),
@@ -24,7 +27,7 @@ class Player {
     });
 
     this.speed = 1.5;
-    this.drag = 0.8;
+    this.drag = 0.7;
     this.gravity = 0.3;
     this.jumpForce = 8;
 
@@ -39,32 +42,67 @@ class Player {
   }
 
   update() {
-    this.velX *= this.drag;
-    this.velY += this.gravity;
-
     let collisions = world.checkCollisions(this);
     log.track('collisions', collisions);
 
-    // if ((!collisions.left && this.velX < 0) ||
-    //     (!collisions.right && this.velX > 0)) {
-      this.x += this.velX;
-    // }
+    this.velX *= this.drag;
+    this.velY += this.gravity;
 
-    // if ((!collisions.bottom && this.velY > 0) ||
-    //     (!collisions.top && this.velX < 0)) {
-      this.y += this.velY;
-    // }
-
-    if (this.y > this.bottomLimit) {
-      this.y = this.bottomLimit;
+    if (collisions.bottom && this.velY > 0) {
+      this.velY = 0;
+      this.y = collisions.bottomSnap;
       this.isJumping = false;
     }
 
-    if (this.x > this.rightLimit) {
-      this.x = this.rightLimit;
-    } else if (this.x < this.leftLimit) {
-      this.x = this.leftLimit;
+    if (collisions.top && this.velY < 0) {
+      this.velY = 0;
+      this.y = collisions.topSnap;
     }
+
+    if (collisions.left && this.velX < 0) {
+      this.velX = 0;
+      this.x = collisions.leftSnap;
+    }
+
+    if (collisions.right && this.velX > 0) {
+      this.velX = 0;
+      this.x = collisions.rightSnap;
+    }
+
+    this.y += this.velY;
+    this.x += this.velX;
+
+
+
+
+    // if ((!collisions.bottom && this.velY > 0) ||
+    //     (!collisions.top && this.velX < 0)) {
+
+    // }
+
+    // if (this.y > this.bottomLimit) {
+    //   this.y = this.bottomLimit;
+    //   this.isJumping = false;
+    // }
+
+    // if (this.x > this.rightLimit) {
+    //   this.x = this.rightLimit;
+    // } else if (this.x < this.leftLimit) {
+    //   this.x = this.leftLimit;
+    // }
+
+
+    if (this.velX > -0.05 && this.velX < 0.05) {
+      this.velX = 0;
+    }
+    if (this.velY > -0.05 && this.velY < 0.05) {
+      this.velY = 0;
+    }
+
+    log.track('player.x', this.x);
+    log.track('player.y', this.y);
+    log.track('player.velX', this.velX);
+    log.track('player.velY', this.velY);
   }
 
   up() {

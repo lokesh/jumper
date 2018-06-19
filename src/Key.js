@@ -15,12 +15,16 @@ class Key {
         down: false,
         left: false,
         right: false,
+
+        // Debugging
+        grid: false,
+        log: false,
       }
 
       this.onKeyUpOrDownBound = this.onKeyUpOrDown.bind(this);
     }
 
-    on() {
+    on(options) {
       window.addEventListener('keydown', this.onKeyUpOrDownBound);
       window.addEventListener('keyup', this.onKeyUpOrDownBound);
     }

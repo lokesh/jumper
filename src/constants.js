@@ -3,6 +3,7 @@ const COLS = 30;
 const ROWS = 20;
 
 export default {
+  // Map
   GRID_SIZE,
   COLS,
   ROWS,
@@ -10,6 +11,10 @@ export default {
   CANVAS_WIDTH: COLS * GRID_SIZE,
   CANVAS_HEIGHT: ROWS * GRID_SIZE,
 
+  // Dims for drawing and collisions.
   PLAYER_W: 16,
   PLAYER_H: 32,
+  // Not used at
+  PLAYER_COLL_W: 14,
+  PLAYER_COLL_H: 28,
 };
