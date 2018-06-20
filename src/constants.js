@@ -1,6 +1,6 @@
 const GRID_SIZE = 16;
-const COLS = 30;
-const ROWS = 20;
+const COLS = 8;
+const ROWS = 6;
 
 export default {
   // Map

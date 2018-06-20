@@ -21,7 +21,7 @@ canvas.height = c.CANVAS_HEIGHT;
 
 
 // Debugging
-let showDebugGrid = false;
+let showDebugGrid = true;
 
 window.addEventListener('keypress', (e) => {
   console.log(e.keyCode);
