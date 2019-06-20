@@ -42,6 +42,11 @@ class Player {
   }
 
   update() {
+    // 1. Check vertical collisions with velY
+    // 2. Snap if collosions
+    // 3. Check horizontal collision with velX
+    // 4. Snap if collision
+
     let collisions = world.checkCollisions(this);
     log.track('collisions', collisions);
 
